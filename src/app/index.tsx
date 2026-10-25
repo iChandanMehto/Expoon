@@ -3,21 +3,31 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {StatusBar} from 'expo-status-bar';
 import Color from "../../constants/Colors";
 import { TASKS } from "../../constants/Tasks";
+import Header from "@/components/Header";
+import DateSelector from "@/components/DateSelector";
+import FilterTabs from "@/components/FilterTabs";
+import { useState } from "react";
 
 
 function Homescreen(){
 const insets = useSafeAreaInsets();
 
+const [activeFIlter, setActiveFilter] = useState<filterOptions>("All")
+
   return(
     <View style = {[styles.container,{paddingTop  : insets.top}]} >
       <StatusBar style="light"/>
+
 <FlatList
 data={TASKS}
 keyExtractor={(item) =>item.id}
 renderItem={({item})=><Text>{item.title}</Text>}
 ListHeaderComponent={
   <>
-  
+      <Header/>
+      <DateSelector/>
+      <FilterTabs
+      selected={activeFilter} onSelect={setActiveFilter}  />
   </>
 }
 />

@@ -53,3 +53,9 @@ export const TASKS: Task[] = [
     icon: { name: 'bookmark', backgroundColor: '#FBBF24' },
   },
 ];
+
+
+export const FILTER_OPTIONS = ["All", "To-Do", "In Progress","Completed"] as const;
+
+export type FilterOptions =(typeof FILTER_OPTIONS)[number];
+
